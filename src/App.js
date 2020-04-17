@@ -1,24 +1,35 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import logo from './logo.svg';
+import ContexValue from './contexts/ContextValue'
 import './App.css';
 
-function App() {
+
+const ChildDiv = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <ContexValue.Consumer>
+        {value => 
+          (
+            <span>
+            {value.isLog}
+            </span>
+          )
+        }
+      </ContexValue.Consumer>
+    </div>
+  );
+}
+
+
+const App = () => {
+  const [ isLog , setIsLog ] = useState(true)
+
+
+  return (
+    <div className="App"  >
+      <ContexValue.Provider value={ isLog , setIsLog }>
+        <ChildDiv />
+      </ContexValue.Provider>
     </div>
   );
 }
