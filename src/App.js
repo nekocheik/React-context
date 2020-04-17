@@ -11,7 +11,7 @@ const ChildDiv = () => {
         {value => 
           (
             <span>
-            {value.isLog}
+            {value.isLog  ? 'is log' : 'is not log'}
             </span>
           )
         }
@@ -22,12 +22,12 @@ const ChildDiv = () => {
 
 
 const App = () => {
-  const [ isLog , setIsLog ] = useState(true)
+  const [ isLog , setIsLog ] = useState(false)
 
 
   return (
     <div className="App"  >
-      <ContexValue.Provider value={ isLog , setIsLog }>
+      <ContexValue.Provider value={ {isLog , setIsLog} }>
         <ChildDiv />
       </ContexValue.Provider>
     </div>
